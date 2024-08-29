@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import Container from '../componentes/Container'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../componentes/counter/counterSlice'
 
-const Home = () => {
-    
+export function Counter() {
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
 
-
-    return (
-        <section>
-            <Container>
-                <h1>Home</h1>
-            </Container>
-        </section>
-    )
+  return (
+    <div>
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >
+          Increment
+        </button>
+        <span>{count}</span>
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
+  )
 }
 
-export default Home
+export default Counter
